@@ -10,9 +10,9 @@ import math
 
 
 if os.name == 'posix':
-    sys.path += ['/usr/lib/python2.6/dist-packages', '/usr/lib/python2.6/dist-packages/rtctree/rtmidl']
+    sys.path += ['./OOoRTC', '/usr/lib/python2.6/dist-packages', '/usr/lib/python2.6/dist-packages/rtctree/rtmidl']
 elif os.name == 'nt':
-    sys.path += ['C:\\Python26\\lib\\site-packages', 'C:\\Python26\\lib\\site-packages\\rtctree\\rtmidl']
+    sys.path += ['.\\OOoRTC', 'C:\\Python26\\lib\\site-packages', 'C:\\Python26\\lib\\site-packages\\rtctree\\rtmidl']
 
 import time
 import random
@@ -224,6 +224,7 @@ class OOoImpressControl(OpenRTM_aist.DataFlowComponentBase):
         pagenum = Presentation.Controller.getSlideCount() - 1
       if pagenum != Presentation.Controller.getCurrentSlideIndex():
         Presentation.Controller.gotoSlideIndex(pagenum)
+        OpenRTM_aist.setTimestamp(self._d_m_SlideNumout)
         self._d_m_SlideNumout.data = Presentation.Controller.getCurrentSlideIndex()
         self._m_SlideNumOut.write()
       
